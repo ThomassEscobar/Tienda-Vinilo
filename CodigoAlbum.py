@@ -80,13 +80,10 @@ def agregar_album():
     album["artista"] = validar_texto("artista")
     album["genero"] = validar_genero()
     album["anio"] = validar_texto("año de lanzamiento")
-    album["formato"] = validar_formato()
-
-    
+    album["formato"] = validar_formato()   
     album["stock_vinilo"] = validar_entero("stock en vinilo")
     album["stock_cd"] = validar_entero("stock en CD")
     album["stock_digital"] = validar_entero("stock en formato digital")
-
     albumes.append(album)
     print("Álbum agregado exitosamente.")
 
@@ -133,7 +130,7 @@ def mostrar_todos():
     else:
         print("No hay álbumes registrados.")
 
-
+#
 
 
 
