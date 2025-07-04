@@ -1,18 +1,20 @@
 albumes = [
     {'id': 'ALB001', 'titulo': 'A Night at the Opera', 'artista': 'Queen', 'genero': 'rock', 'anio': '1975', 'formato': 'vinilo', 'stock_vinilo': 10, 'stock_cd': 5, 'stock_digital': 3},
-    {'id': 'ALB002', 'titulo': 'Thriller', 'artista': 'Michael Jackson', 'genero': 'pop', 'anio': '1982', 'formato': 'cd', 'stock_vinilo': 4, 'stock_cd': 12, 'stock_digital': 6},
-    {'id': 'ALB003', 'titulo': 'Dark Side of the Moon', 'artista': 'Pink Floyd', 'genero': 'rock', 'anio': '1973', 'formato': 'vinilo', 'stock_vinilo': 8, 'stock_cd': 7, 'stock_digital': 5},
-    {'id': 'ALB004', 'titulo': '21', 'artista': 'Adele', 'genero': 'pop', 'anio': '2011', 'formato': 'digital', 'stock_vinilo': 0, 'stock_cd': 2, 'stock_digital': 10},
-    {'id': 'ALB005', 'titulo': 'Abbey Road', 'artista': 'The Beatles', 'genero': 'rock', 'anio': '1969', 'formato': 'vinilo', 'stock_vinilo': 9, 'stock_cd': 6, 'stock_digital': 2},
-    {'id': 'ALB006', 'titulo': 'Back in Black', 'artista': 'AC/DC', 'genero': 'rock', 'anio': '1980', 'formato': 'cd', 'stock_vinilo': 3, 'stock_cd': 8, 'stock_digital': 5},
+    {'id': 'ALB002', 'titulo': 'Thriller', 'artista': 'Michael Jackson', 'genero': 'pop', 'anio': '1982', 'formato': 'cd', 'stock_vinilo': 2, 'stock_cd': 10, 'stock_digital': 6},
+    {'id': 'ALB003', 'titulo': 'Dark Side of the Moon', 'artista': 'Pink Floyd', 'genero': 'rock', 'anio': '1973', 'formato': 'vinilo', 'stock_vinilo': 8, 'stock_cd': 4, 'stock_digital': 5},
+    {'id': 'ALB004', 'titulo': '21', 'artista': 'Adele', 'genero': 'pop', 'anio': '2011', 'formato': 'digital', 'stock_vinilo': 0, 'stock_cd': 1, 'stock_digital': 12},
+    {'id': 'ALB005', 'titulo': 'Abbey Road', 'artista': 'The Beatles', 'genero': 'rock', 'anio': '1969', 'formato': 'vinilo', 'stock_vinilo': 6, 'stock_cd': 7, 'stock_digital': 2},
+    {'id': 'ALB006', 'titulo': 'Back in Black', 'artista': 'AC/DC', 'genero': 'rock', 'anio': '1980', 'formato': 'cd', 'stock_vinilo': 3, 'stock_cd': 8, 'stock_digital': 1},
     {'id': 'ALB007', 'titulo': 'The Wall', 'artista': 'Pink Floyd', 'genero': 'rock', 'anio': '1979', 'formato': 'cd', 'stock_vinilo': 2, 'stock_cd': 9, 'stock_digital': 4},
-    {'id': 'ALB008', 'titulo': 'Lemonade', 'artista': 'Beyoncé', 'genero': 'r&b', 'anio': '2016', 'formato': 'digital', 'stock_vinilo': 0, 'stock_cd': 1, 'stock_digital': 8}
+    {'id': 'ALB008', 'titulo': 'Lemonade', 'artista': 'Beyoncé', 'genero': 'r&b', 'anio': '2016', 'formato': 'digital', 'stock_vinilo': 0, 'stock_cd': 0, 'stock_digital': 10}
 ]
 
 generos_permitidos = [
     "rock", "pop", "jazz", "reggaetón", "clásica", "electrónica",
     "hip hop", "metal", "indie", "blues", "folk", "salsa", "cumbia", "r&b"
 ]
+
+formatos_validos = ["vinilo", "cd", "digital"]
 
 def mostrar_menu():
     print("\n*** MENÚ PRINCIPAL - TIENDA DE VINILOS ***")
@@ -44,6 +46,15 @@ def validar_genero():
         else:
             print("Género no válido. Intente de nuevo.")
 
+def validar_formato():
+    print("\nFormatos válidos: Vinilo, CD, Digital")
+    while True:
+        formato = input("Ingrese formato del álbum: ").strip().lower()
+        if formato in formatos_validos:
+            return formato
+        else:
+            print("Formato no válido. Intente nuevamente.")
+
 def validar_entero(campo):
     while True:
         try:
@@ -69,7 +80,7 @@ def agregar_album():
     album["artista"] = validar_texto("artista")
     album["genero"] = validar_genero()
     album["anio"] = validar_texto("año de lanzamiento")
-    album["formato"] = validar_texto("formato (vinilo, cd o digital)").lower()
+    album["formato"] = validar_formato()
 
     
     album["stock_vinilo"] = validar_entero("stock en vinilo")
@@ -123,26 +134,7 @@ def mostrar_todos():
         print("No hay álbumes registrados.")
 
 
-while True:
-    mostrar_menu()
-    try:
-        opcion = int(input("Ingrese una opción: "))
-        if opcion == 1:
-            agregar_album()
-        elif opcion == 2:
-            buscar_por_anio()
-        elif opcion == 3:
-            buscar_por_genero()
-        elif opcion == 4:
-            eliminar_album()
-        elif opcion == 5:
-            mostrar_todos()
-        elif opcion == 6:
-            print("Gracias por usar el sistema. ¡Hasta luego!")
-            break
-        else:
-            print("Opción no válida. Intente nuevamente.")
-    except ValueError:
-        print("Por favor ingrese un número válido.")
+
+
 
 
